@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { getId, getInitials } from '../Utils';
 
 
-const PeopleList = ({ items, loading, nextPageButton, onNextPage, divider }) => (
+const PeopleList = ({ items, loading, nextPageButton,   onNextPage, divider }) => (
     <Fragment>
         <List component="nav" disablePadding={divider}>
             {items.length !== 0 &&

@@ -5,7 +5,10 @@ import Header from './Header'
 
 const defaultFilters = {
     gender: ['male', 'female', 'n/a'],
-    eye_color: ['n/a', 'yellow', 'blue', 'red', 'brown']
+    eye_color: ['n/a', 'yellow', 'blue', 'red', 'brown'],
+    skin_color: ['fair', 'gold', 'blue', 'white', 'light', 'red'],
+    hair_color: ['blond', 'n/a', 'none', 'brown', 'grey', 'black', 'auburn', 'brown']
+
 
 }
 
