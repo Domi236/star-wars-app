@@ -11,7 +11,9 @@ class PeopleHeader extends Component {
         this.state = {
             searchOpen: false,
             search: '',
-            easterEgg: 0
+            easterEgg: 0,
+            searchSuggestions: ['Luke Skywalker', 'C-3PO', 'Obi-Wan Kenobi', 'Darth Vader', 'R2-D2', 'Leia Organa', 'Owen Lars', 'Beru Whitesun lars', 'R5-D4', 'Biggs Darklighter'],
+            suggestions: []
         }
     }
     handleSearch = e => {
@@ -28,6 +30,25 @@ class PeopleHeader extends Component {
 
     easterEgg = () => this.setState({ easterEgg: this.state.easterEgg >= 4 ? 0 : this.state.easterEgg + 1 })
 
+    showSuggestions = (e) => {
+        this.state.suggestions = []
+        document.getElementById('suggestion-list').innerHTML = ""
+
+        for(let i = 0; i < this.state.searchSuggestions.length -1; i++)
+            
+            if (!(e.target.value === ""))
+                
+                if(this.state.searchSuggestions[i].toLowerCase().indexOf(e.target.value.toLowerCase()) > -1) {
+                    this.state.suggestions.push(this.state.searchSuggestions[i])
+                    document.getElementById('suggestion-list').innerHTML += '<li>' + this.state.searchSuggestions[i] + '</li>'
+                    }
+
+    }
+
+    previewSearch = e => {
+        this.setState({ search: e.target.value})
+        this.showSuggestions(e)
+    }
     render() {
         const { search, searchOpen } = this.state
         return this.state.easterEgg >= 4 ? <Redirect to="/notification" /> : (
@@ -46,14 +67,16 @@ class PeopleHeader extends Component {
                                 name="search"
                                 type="search"
                                 value={search}
-                                onChange={e => this.setState({ search: e.target.value })}
+                                onChange={this.previewSearch}
                                 placeholder="Search..."
                                 autoFocus
                                 style={{ fontSize: 'inherit', width: '100%' }}
                                 inputProps={{ style: { width: '100%' } }}
-                            />
+                            />                   
                         </Typography>
+                        <ul id="suggestion-list"></ul>
                     </form>
+                    
                 }
                 rightAction={
                     searchOpen ?
