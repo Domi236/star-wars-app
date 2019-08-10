@@ -5,6 +5,7 @@ import PeopleFilter from '../PeopleFilter';
 import PeopleList from '../PeopleList';
 import { Typography } from '@material-ui/core';
 import NotFound from '../NotFound';
+import $ from 'jquery'
 
 class People extends Component {
     constructor(props) {
@@ -18,7 +19,9 @@ class People extends Component {
             hasNextPage: false,
             filter: {},
             filterOpen: false,
+            autoLoading: true
         }
+        this.getAutoLoad = this.getAutoLoad.bind(this)
     }
 
     getContent = () => {
@@ -31,8 +34,8 @@ class People extends Component {
         for (let key in params)
             if (params[key])
                 url.searchParams.append(key, params[key])
-
-        fetch(url)
+        setTimeout(() => { 
+            fetch(url)
             .then(response => response.json())
             .then(({ count, next, results }) =>
                 this.setState({
@@ -42,6 +45,7 @@ class People extends Component {
                     items: this.state.page > 1 ? [...this.state.items, ...results] : results
                 })
             )
+        }, 500);
     }
 
     handleSearch = search => {
@@ -55,7 +59,35 @@ class People extends Component {
 
     componentDidMount() {
         this.getContent()
+        this.autoLoading()
+        this.getAutoLoad()
     }
+
+    getAutoLoad = () => {
+        $(window).scroll(() => {
+            if($(window).height() + $(window).scrollTop() === $(document).height()) {
+               this.handleNextPage()
+                this.autoLoading()
+                this.setState({autoLoading: true}) 
+            }
+        });
+    }
+
+    autoLoading = () => {
+        if(!this.state.autoLoading) {
+            return
+        } else {
+            $(window).scroll(() => {
+                if($('nav').height() + $(window).scrollTop() >= $('nav').height() && this.state.autoLoading) {
+                                        
+                    this.setState({autoLoading: false}) 
+                    this.handleNextPage()
+                } 
+                return
+            }); 
+        }
+    }
+
 
     getInitials(name) {
         name = name.toUpperCase().replace('-', '').split(' ')

@@ -31,7 +31,7 @@ class PeopleHeader extends Component {
     easterEgg = () => this.setState({ easterEgg: this.state.easterEgg >= 4 ? 0 : this.state.easterEgg + 1 })
 
     showSuggestions = (e) => {
-        this.state.suggestions = []
+        this.setState({suggestions: []})
         document.getElementById('suggestion-list').innerHTML = ""
 
         for(let i = 0; i < this.state.searchSuggestions.length -1; i++)
