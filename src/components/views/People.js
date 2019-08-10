@@ -118,7 +118,7 @@ class People extends Component {
         const { hasNextPage, loading, filter, filterOpen } = this.state
         const items = this.getFilteredList()
         return (
-            <Fragment>
+            <Fragment>  
                 <PeopleHeader onSearch={this.handleSearch} onFilterOpen={this.toggleFilter} onNextPage={this.handleNextPage} />
                 <main>
                     {!items.length && !loading &&

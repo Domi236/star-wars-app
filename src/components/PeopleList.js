@@ -12,7 +12,7 @@ const PeopleList = ({ items, loading, nextPageButton, onNextPage, divider }) => 
                 items.map(({ name, mass, height, url }) =>
                     <Fragment key={getId(url)}>
                         {divider && <Divider />}
-                        <ListItem button component={Link} to={`/people/${getId(url)}`} >
+                        <ListItem id="list-item" button component={Link} to={`/people/${getId(url)}`} >
                             <Avatar>{getInitials(name)}</Avatar>
                             <ListItemText primary={name} secondary={`Weight: ${mass}, Height: ${height}CM, `} />
                         </ListItem>

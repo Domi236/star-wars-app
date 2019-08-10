@@ -40,7 +40,7 @@ class PeopleHeader extends Component {
                 
                 if(this.state.searchSuggestions[i].toLowerCase().indexOf(e.target.value.toLowerCase()) > -1) {
                     this.state.suggestions.push(this.state.searchSuggestions[i])
-                    document.getElementById('suggestion-list').innerHTML += '<li>' + this.state.searchSuggestions[i] + '</li>'
+                    document.getElementById('suggestion-list').innerHTML += '<li className="suggestion-list-item" >' + this.state.searchSuggestions[i] + '</li>'
                     }
 
     }

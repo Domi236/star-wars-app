@@ -12,3 +12,80 @@ dt {
   min-width: 100px;
   font-weight: bold;
 }
+
+#root{
+  display: grid;
+  grid-template-rows: 60px auto;
+  grid-template-columns: auto;
+  justify-items: center;
+}
+
+#root:first-child {
+  grid-area: header;
+  height: auto;
+  justify-content: stretch;
+}
+
+#root:nth-child(2) {
+  grid-area: main;
+}
+
+#nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+@media (min-width: 700px) {
+  #nav {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+#nav a {
+  min-width: 100%;
+  width: 90vw
+  
+}
+
+@media (min-width: 700px) {
+  #nav a {
+    min-width: 300px;
+    min-height: 350px;
+    width: 300px;
+    height: 350px;
+    margin: 20px;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 700px) {
+  #nav a div:first-child {
+    font-size: 50px;
+    padding: 30px;
+    margin: 20px 0 50px;
+  }
+}
+
+@media (min-width: 700px) {
+  #nav a div span {
+    font-size: 30px;
+    text-align: center;
+  }
+}
+
+@media (min-width: 700px) {
+  #nav a div p {
+    font-size: 18px; 
+    text-align: center;
+  }
+}
+
+.suggestion-list-item {
+  height: auto;
+}
+
+
