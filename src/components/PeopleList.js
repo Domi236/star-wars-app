@@ -21,7 +21,7 @@ const PeopleList = ({ items, loading, nextPageButton, onNextPage, divider }) => 
             }
             {nextPageButton &&
                 <ListItem button onClick={onNextPage} >
-                    <ListItemText primary="Load more..." />
+                    <ListItemText className="loading-btn" primary="Load more..." />
                 </ListItem>
             }
         </List>

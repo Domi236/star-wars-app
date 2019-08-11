@@ -88,4 +88,14 @@ dt {
   height: auto;
 }
 
+@media (min-width: 700px) {
+  .loading-btn {
+    text-align: center;
+  }
+  .loading-btn span {
+    font-size: 25px;
+  }
+}
+
+
 
