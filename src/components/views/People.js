@@ -62,7 +62,9 @@ class People extends Component {
 
     getAutoLoad = () => {
         $(window).scroll(() => {
-            window.innerHeight + window.scrollY === document.body.offsetHeight ? this.handleNextPage() : null
+            if(window.innerHeight + window.scrollY === document.body.offsetHeight) {
+                this.handleNextPage()
+            }
         })
     }
 
