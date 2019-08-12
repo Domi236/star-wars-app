@@ -84,8 +84,42 @@ dt {
   }
 }
 
-.suggestion-list-item {
+#suggestion-list {
+  position: fixed;
   height: auto;
+  width: 200px;
+  max-width: 250px;
+  top: 60px;
+  left: 50%;
+  list-style-type: none;
+  transform: translateX(-50%);
+}
+
+#suggestion-list li {
+  padding: 6px 6px 6px 10px;
+  background-color: #212125;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#suggestion-list li:first-child {
+  border-top-left-radius: 10px;
+}
+#suggestion-list li:last-child {
+  border-bottom-left-radius: 10px;
+}
+
+@media (min-width: 540px) {
+  #suggestion-list {
+    transform: translateX(0);
+    list-style-type: unset;
+  }
+}
+
+@media (min-width: 700px) {
+  #suggestion-list {
+    left: 32px;
+  }
 }
 
 @media (min-width: 700px) {

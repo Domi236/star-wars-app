@@ -5,7 +5,7 @@ import PeopleFilter from '../PeopleFilter';
 import PeopleList from '../PeopleList';
 import { Typography } from '@material-ui/core';
 import NotFound from '../NotFound';
-// import $ from 'jquery'
+import $ from 'jquery';
 
 class People extends Component {
     constructor(props) {
@@ -19,7 +19,6 @@ class People extends Component {
             hasNextPage: false,
             filter: {},
             filterOpen: false
-            // autoLoading: true
         }
     }
 
@@ -33,18 +32,17 @@ class People extends Component {
         for (let key in params)
             if (params[key])
                 url.searchParams.append(key, params[key])
-        // setTimeout(() => { 
-            fetch(url)
-            .then(response => response.json())
-            .then(({ count, next, results }) =>
-                this.setState({
-                    loading: false,
-                    results: count,
-                    hasNextPage: Boolean(next),
-                    items: this.state.page > 1 ? [...this.state.items, ...results] : results
-                })
-            )
-        // }, 500);
+        fetch(url)
+        .then(response => response.json())
+        .then(({ count, next, results }) =>
+            this.setState({
+                loading: false,
+                results: count,
+                hasNextPage: Boolean(next),
+                items: this.state.page > 1 ? [...this.state.items, ...results] : results
+            })
+        )
+        
     }
 
     handleSearch = search => {
@@ -52,40 +50,21 @@ class People extends Component {
         this.setState({ search, items: [], page: 1 }, this.getContent)
     }
     handleNextPage = () => {
-        if (!this.state.hasNextPage) return
+        if (!this.state.hasNextPage) return 
         this.setState({ page: this.state.page + 1 }, this.getContent)
+        
     }
 
     componentDidMount() {
         this.getContent()
-        // this.autoLoading()
-        // this.getAutoLoad()
+        this.getAutoLoad()
     }
 
-    // getAutoLoad = () => {
-    //     $(window).scroll(() => {
-    //         if($(window).height() + $(window).scrollTop() === $(document).height()) {
-    //            this.handleNextPage()
-    //             this.autoLoading()
-    //             this.setState({autoLoading: true}) 
-    //         }
-    //     });
-    // }
-
-    // autoLoading = () => {
-    //     if(!this.state.autoLoading) {
-    //         return
-    //     } else {
-    //         $(window).scroll(() => {
-    //             if($('nav').height() + $(window).scrollTop() >= $('nav').height() && this.state.autoLoading) {
-                                        
-    //                 this.setState({autoLoading: false}) 
-    //                 this.handleNextPage()
-    //             } 
-    //             return
-    //         }); 
-    //     }
-    // }
+    getAutoLoad = () => {
+        $(window).scroll(() => {
+            window.innerHeight + window.scrollY === document.body.offsetHeight ? this.handleNextPage() : null
+        })
+    }
 
 
     getInitials(name) {
