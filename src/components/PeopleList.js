@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react';
-import { List, ListItem, ListItemText, Avatar, Divider } from '@material-ui/core';
+import { ListItemText, ListItem, Avatar, Divider } from '@material-ui/core';
 import Loader from './Loader';
 import { Link } from 'react-router-dom'
 import { getId, getInitials } from '../Utils';
+import { PeopleListContainer, Button } from '../global.styles';
 
 
 const PeopleList = ({ items, loading, nextPageButton, onNextPage, divider }) => (
     <Fragment>
-        <List id="nav" component="nav" disablePadding={divider}>
+        <PeopleListContainer component="nav" disablePadding={divider}>
             {items.length !== 0 &&
                 items.map(({ name, mass, height, url }) =>
                     <Fragment key={getId(url)}>
@@ -21,10 +22,10 @@ const PeopleList = ({ items, loading, nextPageButton, onNextPage, divider }) => 
             }
             {nextPageButton &&
                 <ListItem button onClick={onNextPage} >
-                    <ListItemText className="loading-btn" primary="Load more..." />
+                    <Button primary="Load more..." />
                 </ListItem>
             }
-        </List>
+        </PeopleListContainer>
         {loading && <Loader />}
 
     </Fragment>

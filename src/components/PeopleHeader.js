@@ -4,6 +4,8 @@ import { IconButton, Typography } from '@material-ui/core';
 import InputBase from '@material-ui/core/InputBase'
 import { Search as SearchIcon, FilterList as FilterIcon, Cancel as CacelIcon } from '@material-ui/icons'
 import { Redirect } from 'react-router-dom'
+import { SuggestionList } from '../global.styles';
+
 
 class PeopleHeader extends Component {
     constructor(props) {
@@ -75,7 +77,7 @@ class PeopleHeader extends Component {
                                 inputProps={{ style: { width: '100%' } }}
                             />                   
                         </Typography>
-                        <ul id='suggestion-list' ref={this.suggestionList}></ul>
+                        <SuggestionList ref={this.suggestionList}></SuggestionList>
                     </form>
                     
                 }

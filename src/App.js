@@ -39,8 +39,8 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <GlobalStyle/>
                 <MuiThemeProvider theme={theme}>
+                    <GlobalStyle/>
                     <UpdateHandler appServiceWorker={this.props.appServiceWorker}>
                         <Switch>
                             <Redirect exact from="/" to="/people" />
