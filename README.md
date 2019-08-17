@@ -27,3 +27,4 @@ WebAPP to get info about Star Wars using the SWAPI http://maxjf1.github.io/star-
  **In refactored-tasks branch**
  
  - 4) refactored in PeopleHeader.js by using the map() method and creating a ref instead of using id.
+ - 5) I add node-sass(scss), styled-components, global.styles.js and switch all stylings from index.css to global.styles.js and export         them to their components. Also add Global style tag to App.js.
