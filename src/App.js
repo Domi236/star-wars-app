@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core';
-import 'typeface-roboto'
+import 'typeface-roboto';
+import { GlobalStyle } from './global.styles';
 
 import { theme } from './settings'
 import UpdateHandler from './components/UpdateHandler'
@@ -38,6 +39,7 @@ class App extends Component {
     render() {
         return (
             <Router>
+                <GlobalStyle/>
                 <MuiThemeProvider theme={theme}>
                     <UpdateHandler appServiceWorker={this.props.appServiceWorker}>
                         <Switch>

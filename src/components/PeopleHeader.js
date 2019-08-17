@@ -15,6 +15,7 @@ class PeopleHeader extends Component {
             searchSuggestions: ['Luke Skywalker', 'C-3PO', 'Obi-Wan Kenobi', 'Darth Vader', 'R2-D2', 'Leia Organa', 'Owen Lars', 'Beru Whitesun lars', 'R5-D4', 'Biggs Darklighter'],
             suggestions: []
         }
+        this.suggestionList = React.createRef();
     }
     handleSearch = e => {
         e && e.preventDefault()
@@ -32,17 +33,17 @@ class PeopleHeader extends Component {
 
     showSuggestions = (e) => {
         this.setState({suggestions: []})
-        document.getElementById('suggestion-list').innerHTML = ""
-
-        for(let i = 0; i < this.state.searchSuggestions.length -1; i++)
-            
-            if (!(e.target.value === ""))
-                
-                if(this.state.searchSuggestions[i].toLowerCase().indexOf(e.target.value.toLowerCase()) > -1) {
-                    this.state.suggestions.push(this.state.searchSuggestions[i])
-                    document.getElementById('suggestion-list').innerHTML += '<li>' + this.state.searchSuggestions[i] + '</li>'
-                    }
-
+        this.suggestionList.current.innerHTML = "";
+        this.state.searchSuggestions.map((item) => {
+            if (!(e.target.value === "")) {
+                if(item.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1) {
+                    this.state.suggestions.push(item)
+                    let li = document.createElement('li')
+                    li.textContent = item
+                    this.suggestionList.current.appendChild(li)
+                }
+            }
+        })
     }
 
     previewSearch = e => {
@@ -74,7 +75,7 @@ class PeopleHeader extends Component {
                                 inputProps={{ style: { width: '100%' } }}
                             />                   
                         </Typography>
-                        <ul id="suggestion-list"></ul>
+                        <ul id='suggestion-list' ref={this.suggestionList}></ul>
                     </form>
                     
                 }
