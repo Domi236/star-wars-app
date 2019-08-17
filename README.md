@@ -19,11 +19,11 @@ WebAPP to get info about Star Wars using the SWAPI http://maxjf1.github.io/star-
  **In master branch**
  
 - 1) The pagination is solved with jQuery in People.js.
-- 2,10,11) The CSS is all in Index.css. I let the list view for mobile as it was before, because i found it is good as it was.
+- 2) 10) 11) The CSS is all in Index.css. I let the list view for mobile as it was before, because i found it is good as it was.
 - 3) In PeopleFilter.js I only add two new Arrays.
 - 4) The search suggestions are solved in PeopleHeader.js, where only the names are shown while typing.
  
  
  **In refactored-tasks branch**
  
- -4) refactored in PeopleHeader.js by using the map() method and creating a ref instead of using id.
+ - 4) refactored in PeopleHeader.js by using the map() method and creating a ref instead of using id.
