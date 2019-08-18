@@ -8,7 +8,7 @@ import { PeopleListContainer, Button } from '../global.styles';
 
 const PeopleList = ({ items, loading, nextPageButton, onNextPage, divider }) => (
     <Fragment>
-        <PeopleListContainer component="nav" disablePadding={divider}>
+        <PeopleListContainer id="nav" component="nav" disablePadding={divider}>
             {items.length !== 0 &&
                 items.map(({ name, mass, height, url }) =>
                     <Fragment key={getId(url)}>

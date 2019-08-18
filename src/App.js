@@ -11,6 +11,11 @@ import PeopleSingle from './components/views/PeopleSingle';
 import PlanetSingle from './components/views/PlanetSingle';
 import MovieSingle from './components/views/MovieSingle/MovieSingle';
 
+import ReactDOMServer from "react-dom/server";
+import PullToRefresh from "pulltorefreshjs";
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const notificationKey = 'welcomeNotification'
 class App extends Component {
 
@@ -34,8 +39,24 @@ class App extends Component {
 
     componentDidMount() {
         this.welcomeNotification()
+
+        PullToRefresh.init({
+            mainElement: "#nav",
+            onRefresh() {
+              window.location.reload();
+            },
+            iconArrow: ReactDOMServer.renderToString(
+                <FontAwesomeIcon icon={faSyncAlt} />
+            ),
+            iconRefreshing: ReactDOMServer.renderToString(
+            <FontAwesomeIcon icon={faSyncAlt} spin={true} />
+            )
+        });
     }
 
+    componentWillUnmount() {
+        PullToRefresh.destroyAll();
+    }
     render() {
         return (
             <Router>
