@@ -18,7 +18,7 @@ WebAPP to get info about Star Wars using the SWAPI http://maxjf1.github.io/star-
  
  **In master branch**
  
-- 1) The pagination is solved with jQuery in People.js.
+- 1) The pagination is solved with jQuery in People.js, but it doesn't work everytime.
 - 2) The CSS is all in Index.css. I let the list view for mobile as it was before, because i found it is good as it was.
 - 3) In PeopleFilter.js I only add two new Arrays.
 - 4) The search suggestions are solved in PeopleHeader.js, where only the names are shown while typing.
@@ -26,5 +26,7 @@ WebAPP to get info about Star Wars using the SWAPI http://maxjf1.github.io/star-
  
  **In refactored-tasks branch**
  
+ - 1) Fix pagination with react-infinite-scroll-component in PeopleList.js and People.js.
+ - 2) I add node-sass(scss), styled-components, global.styles.js and switch all stylings from index.css to global.styles.js and export           them to their components. Also add Global style tag to App.js.
  - 4) refactored in PeopleHeader.js by using the map() method and creating a ref instead of using id.
- - 5) I add node-sass(scss), styled-components, global.styles.js and switch all stylings from index.css to global.styles.js and export         them to their components. Also add Global style tag to App.js.
+ - 5) Add pull to refresh to the lists with pulltorefreshjs and three @fortawesome packages. You can see it only with the mobile view in         the dev tools.
