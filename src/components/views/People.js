@@ -5,7 +5,8 @@ import PeopleFilter from '../PeopleFilter';
 import PeopleList from '../PeopleList';
 import { Typography } from '@material-ui/core';
 import NotFound from '../NotFound';
-import $ from 'jquery';
+import $ from "jquery";
+
 
 class People extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class People extends Component {
             results: 0,
             hasNextPage: false,
             filter: {},
-            filterOpen: false
+            filterOpen: false,
         }
     }
 
@@ -30,19 +31,21 @@ class People extends Component {
             search, page
         }
         for (let key in params)
-            if (params[key])
-                url.searchParams.append(key, params[key])
-        fetch(url)
-        .then(response => response.json())
-        .then(({ count, next, results }) =>
-            this.setState({
-                loading: false,
-                results: count,
-                hasNextPage: Boolean(next),
-                items: this.state.page > 1 ? [...this.state.items, ...results] : results
-            })
-        )
-        
+                if (params[key])
+                    url.searchParams.append(key, params[key])
+
+        setTimeout(() => {
+            fetch(url)
+            .then(response => response.json())
+            .then(({ count, next, results }) =>
+                this.setState({
+                    loading: false,
+                    results: count,
+                    hasNextPage: Boolean(next),
+                    items: this.state.page > 1 ? [...this.state.items, ...results] : results
+                })
+            )
+        }, 1500);
     }
 
     handleSearch = search => {
@@ -52,29 +55,11 @@ class People extends Component {
     handleNextPage = () => {
         if (!this.state.hasNextPage) return 
         this.setState({ page: this.state.page + 1 }, this.getContent)
-        
     }
 
     componentDidMount() {
         this.getContent()
-        this.getAutoLoad()
     }
-
-    getAutoLoad = () => {
-        let triggered = true
-        $(window).scroll(() => {
-            if(Math.round(window.innerHeight + window.scrollY) === document.body.offsetHeight) {
-                if (triggered) {
-                    this.handleNextPage()
-                    return triggered = false
-                }
-                if (!triggered) {
-                    return triggered = true
-                }
-            }
-        })
-    }
-
 
     getInitials(name) {
         name = name.toUpperCase().replace('-', '').split(' ')
@@ -116,8 +101,8 @@ class People extends Component {
                         </NotFound>
                     }
                     <PeopleList
-                        loading={loading}
                         items={items}
+                        hasNextPage={hasNextPage}
                         nextPageButton={hasNextPage && !loading}
                         onNextPage={this.handleNextPage}
                     />

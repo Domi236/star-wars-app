@@ -4,32 +4,43 @@ import Loader from './Loader';
 import { Link } from 'react-router-dom'
 import { getId, getInitials } from '../Utils';
 import { PeopleListContainer, Button } from '../global.styles';
+import InfiniteScroll from "react-infinite-scroll-component";
 
+const PeopleList = ({ items, hasNextPage, onNextPage, divider}) => {
 
-const PeopleList = ({ items, loading, nextPageButton, onNextPage, divider }) => (
-    <Fragment>
-        <PeopleListContainer id="nav" component="nav" disablePadding={divider}>
-            {items.length !== 0 &&
-                items.map(({ name, mass, height, url }) =>
-                    <Fragment key={getId(url)}>
-                        {divider && <Divider />}
-                        <ListItem id="list-item" button component={Link} to={`/people/${getId(url)}`} >
-                            <Avatar>{getInitials(name)}</Avatar>
-                            <ListItemText primary={name} secondary={`Weight: ${mass}, Height: ${height}CM, `} />
-                        </ListItem>
-                    </Fragment>
-                )
-            }
-            {nextPageButton &&
-                <ListItem button onClick={onNextPage} >
-                    <Button primary="Load more..." />
-                </ListItem>
-            }
-        </PeopleListContainer>
-        {loading && <Loader />}
+    return(
+        <Fragment>
+            <PeopleListContainer id="nav" component="nav" disablePadding={divider}>
+                <InfiniteScroll 
+                    dataLength={items.length}
+                    next={onNextPage} 
+                    hasMore={true}
+                    loader={hasNextPage && <Loader />}
+                    style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
+                >
+                    {items.length !== 0 &&
+                        items.map(({ name, mass, height, url }) =>
+                            <Fragment key={getId(url)}>
+                                {divider && <Divider />}
+                                <ListItem id="list-item" button component={Link} to={`/people/${getId(url)}`} >
+                                    <Avatar>{getInitials(name)}</Avatar>
+                                    <ListItemText primary={name} secondary={`Weight: ${mass}, Height: ${height}CM, `} />
+                                </ListItem>
+                            </Fragment>
+                        )
+                    }
 
-    </Fragment>
-)
+                </InfiniteScroll>
+                {hasNextPage &&
+                    <ListItem button onClick={onNextPage} >
+                        <Button primary="Load more..." />
+                    </ListItem>
+                }
+            </PeopleListContainer>
+
+        </Fragment>
+    )
+}
 
 
 export default PeopleList;

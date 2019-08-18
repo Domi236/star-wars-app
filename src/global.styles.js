@@ -27,20 +27,12 @@ export const GlobalStyle = createGlobalStyle`
 
 export const PeopleListContainer = styled(List)`
 
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-
   a {
-    min-width: 100%;
+    min-width: 80%;
     width: 90vw
   }
 
   @media (min-width: 700px) {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
     a {
       min-width: 300px;
       min-height: 350px;

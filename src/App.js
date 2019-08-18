@@ -49,7 +49,7 @@ class App extends Component {
                 <FontAwesomeIcon icon={faSyncAlt} />
             ),
             iconRefreshing: ReactDOMServer.renderToString(
-            <FontAwesomeIcon icon={faSyncAlt} spin={true} />
+                <FontAwesomeIcon icon={faSyncAlt} spin={true} />
             )
         });
     }

@@ -4,19 +4,20 @@
   "private": true,
   "homepage": "http://maxjf1.github.io/star-wars-app",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "1.2.17",
+    "@fortawesome/free-solid-svg-icons": "5.8.1",
+    "@fortawesome/react-fontawesome": "0.1.4",
     "@material-ui/core": "^3.1.0",
     "@material-ui/icons": "^1.1.0",
     "jquery": "^3.4.1",
     "node-sass": "^4.12.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-infinite-scroll-component": "^4.5.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "styled-components": "^4.3.2",
-    "typeface-roboto": "0.0.54",
-    "@fortawesome/fontawesome-svg-core": "1.2.17",
-    "@fortawesome/free-solid-svg-icons": "5.8.1",
-    "@fortawesome/react-fontawesome": "0.1.4"
+    "typeface-roboto": "0.0.54"
   },
   "scripts": {
     "predeploy": "npm run build",
