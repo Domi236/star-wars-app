@@ -6,6 +6,7 @@ import { getId, getInitials } from '../Utils';
 import { PeopleListContainer, Button } from '../global.styles';
 import InfiniteScroll from "react-infinite-scroll-component";
 
+ 
 const PeopleList = ({ items, hasNextPage, onNextPage, divider}) => {
 
     return(
@@ -32,7 +33,7 @@ const PeopleList = ({ items, hasNextPage, onNextPage, divider}) => {
 
                 </InfiniteScroll>
                 {hasNextPage &&
-                    <ListItem button onClick={onNextPage} >
+                    <ListItem style={{ width: '90vw', margin: '0 auto'}} button onClick={onNextPage} >
                         <Button primary="Load more..." />
                     </ListItem>
                 }

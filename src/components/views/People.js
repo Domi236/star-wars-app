@@ -5,7 +5,6 @@ import PeopleFilter from '../PeopleFilter';
 import PeopleList from '../PeopleList';
 import { Typography } from '@material-ui/core';
 import NotFound from '../NotFound';
-import $ from "jquery";
 
 
 class People extends Component {
